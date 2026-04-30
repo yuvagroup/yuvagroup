@@ -8,42 +8,98 @@
 <style>
 body{
  margin:0;
- background:linear-gradient(135deg,#f5f5f5,#eaeaea);
- text-align:center;
  font-family:Arial;
+ background:#0f172a;
+ color:#fff;
+ overflow-x:hidden;
 }
 
+/* 🔵 LOADER */
+#loader{
+ position:fixed;
+ width:100%;
+ height:100%;
+ background:#0f172a;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ z-index:9999;
+}
+
+.loader-circle{
+ width:60px;
+ height:60px;
+ border:6px solid #444;
+ border-top:6px solid #00bcd4;
+ border-radius:50%;
+ animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+ to{transform:rotate(360deg);}
+}
+
+/* 🌌 BACKGROUND ANIMATION */
+.bg{
+ position:fixed;
+ width:100%;
+ height:100%;
+ overflow:hidden;
+ z-index:-1;
+}
+
+.bg span{
+ position:absolute;
+ width:4px;
+ height:4px;
+ background:white;
+ opacity:0.5;
+ animation:move 20s linear infinite;
+}
+
+@keyframes move{
+ from{transform:translateY(0);}
+ to{transform:translateY(-100vh);}
+}
+
+/* container */
 .container{
  position:relative;
  display:inline-block;
  max-width:1200px;
  width:100%;
+ margin-top:40px;
  animation:fadeIn 1s ease;
 }
 
 @keyframes fadeIn{
  from{opacity:0; transform:translateY(20px);}
- to{opacity:1; transform:translateY(0);}
+ to{opacity:1;}
 }
 
 .container img{
  width:100%;
  border-radius:20px;
- box-shadow:0 10px 40px rgba(0,0,0,0.15);
+ box-shadow:0 10px 40px rgba(0,0,0,0.4);
 }
 
 /* hotspots */
 .hotspot{
  position:absolute;
  border-radius:12px;
- transition:0.3s;
  cursor:pointer;
+ transition:0.3s;
 }
 
+/* hover */
 .hotspot:hover{
- background:rgba(255,255,255,0.2);
- box-shadow:0 0 20px rgba(0,0,0,0.3);
- transform:scale(1.05);
+ background:rgba(255,255,255,0.15);
+ transform:scale(1.08);
+}
+
+/* CLICK ZOOM */
+.hotspot:active{
+ transform:scale(1.2);
 }
 
 /* tooltip */
@@ -54,8 +110,7 @@ body{
  left:50%;
  transform:translateX(-50%);
  background:#000;
- color:#fff;
- padding:5px 10px;
+ padding:6px 10px;
  border-radius:6px;
  font-size:12px;
  opacity:0;
@@ -74,11 +129,60 @@ body{
 #hikeup{ bottom:10%; left:42%; width:16%; height:20%; }
 #yuva-cares{ bottom:10%; right:5%; width:20%; height:22%; }
 
+/* CONTACT SECTION */
+.contact{
+ margin:60px auto;
+ max-width:800px;
+ background:#111827;
+ padding:30px;
+ border-radius:15px;
+ box-shadow:0 0 30px rgba(0,0,0,0.5);
+}
+
+.contact h2{
+ margin-bottom:20px;
+}
+
+.contact input, .contact textarea{
+ width:100%;
+ padding:12px;
+ margin:10px 0;
+ border:none;
+ border-radius:8px;
+}
+
+.contact button{
+ padding:12px 20px;
+ background:#00bcd4;
+ color:white;
+ border:none;
+ border-radius:8px;
+ cursor:pointer;
+}
+
+/* mobile */
+@media(max-width:768px){
+ #ytrip{width:18%; height:18%;}
+ #b2bfare{width:22%; height:22%;}
+ #yuvento{width:20%; height:22%;}
+ #pigeon{width:24%; height:24%;}
+ #hikeup{width:20%; height:22%;}
+ #yuva-cares{width:24%; height:24%;}
+}
 </style>
 </head>
 
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+ <div class="loader-circle"></div>
+</div>
+
+<!-- BACKGROUND -->
+<div class="bg" id="bg"></div>
+
+<!-- MAIN IMAGE -->
 <div class="container">
 <img src="yuva-group.jpg">
 
@@ -88,8 +192,33 @@ body{
 <a class="hotspot" id="pigeon" href="https://pigeonst.com" target="_blank" data-name="Pigeon Street"></a>
 <a class="hotspot" id="hikeup" href="https://hikeup.biz" target="_blank" data-name="HikeUp"></a>
 <a class="hotspot" id="yuva-cares" href="https://yuvacares.com" target="_blank" data-name="Yuva Cares"></a>
-
 </div>
+
+<!-- CONTACT -->
+<div class="contact">
+<h2>Contact Us</h2>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Your Email">
+<textarea rows="4" placeholder="Message"></textarea>
+<button>Send Message</button>
+</div>
+
+<script>
+/* remove loader */
+window.onload = () => {
+ document.getElementById("loader").style.display = "none";
+};
+
+/* generate background particles */
+const bg = document.getElementById("bg");
+for(let i=0;i<40;i++){
+ let span=document.createElement("span");
+ span.style.left=Math.random()*100+"%";
+ span.style.top=Math.random()*100+"%";
+ span.style.animationDuration=(10+Math.random()*20)+"s";
+ bg.appendChild(span);
+}
+</script>
 
 </body>
 </html>
