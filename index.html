@@ -1,111 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yuva Group</title>
 
 <style>
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-text-align:center;
+ margin:0;
+ background:linear-gradient(135deg,#f5f5f5,#eaeaea);
+ text-align:center;
+ font-family:Arial;
 }
 
-.hero{
-padding:40px 20px;
+.container{
+ position:relative;
+ display:inline-block;
+ max-width:1200px;
+ width:100%;
+ animation:fadeIn 1s ease;
 }
 
-.hero img{
-max-width:900px;
-width:95%;
-border-radius:20px;
-box-shadow:0 8px 30px rgba(0,0,0,.12);
+@keyframes fadeIn{
+ from{opacity:0; transform:translateY(20px);}
+ to{opacity:1; transform:translateY(0);}
 }
 
-h2{
-margin-top:50px;
+.container img{
+ width:100%;
+ border-radius:20px;
+ box-shadow:0 10px 40px rgba(0,0,0,0.15);
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-max-width:1100px;
-margin:40px auto 70px;
-padding:20px;
+/* hotspots */
+.hotspot{
+ position:absolute;
+ border-radius:12px;
+ transition:0.3s;
+ cursor:pointer;
 }
 
-.card{
-background:white;
-padding:35px 25px;
-border-radius:20px;
-box-shadow:0 8px 25px rgba(0,0,0,.08);
-text-decoration:none;
-color:#222;
-transition:.3s;
+.hotspot:hover{
+ background:rgba(255,255,255,0.2);
+ box-shadow:0 0 20px rgba(0,0,0,0.3);
+ transform:scale(1.05);
 }
 
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 12px 35px rgba(0,0,0,.15);
+/* tooltip */
+.hotspot::after{
+ content:attr(data-name);
+ position:absolute;
+ bottom:110%;
+ left:50%;
+ transform:translateX(-50%);
+ background:#000;
+ color:#fff;
+ padding:5px 10px;
+ border-radius:6px;
+ font-size:12px;
+ opacity:0;
+ transition:0.3s;
 }
 
-.card h3{
-margin-bottom:10px;
+.hotspot:hover::after{
+ opacity:1;
 }
 
-.footer{
-padding:30px;
-color:#666;
-}
+/* positions */
+#ytrip{ top:6%; left:43%; width:14%; height:16%; }
+#b2bfare{ top:14%; left:4%; width:18%; height:18%; }
+#yuvento{ top:14%; right:5%; width:16%; height:18%; }
+#pigeon{ bottom:12%; left:5%; width:20%; height:22%; }
+#hikeup{ bottom:10%; left:42%; width:16%; height:20%; }
+#yuva-cares{ bottom:10%; right:5%; width:20%; height:22%; }
+
 </style>
 </head>
+
 <body>
 
-<section class="hero">
-<img src="yuva-group.jpg" alt="Yuva Group">
-</section>
+<div class="container">
+<img src="yuva-group.jpg">
 
-<h2>Our Companies</h2>
+<a class="hotspot" id="ytrip" href="https://ytrip.in" target="_blank" data-name="Ytrip"></a>
+<a class="hotspot" id="b2bfare" href="https://b2bfare.com" target="_blank" data-name="B2BFare"></a>
+<a class="hotspot" id="yuvento" href="https://yuvento.com" target="_blank" data-name="Yuvento"></a>
+<a class="hotspot" id="pigeon" href="https://pigeonst.com" target="_blank" data-name="Pigeon Street"></a>
+<a class="hotspot" id="hikeup" href="https://hikeup.biz" target="_blank" data-name="HikeUp"></a>
+<a class="hotspot" id="yuva-cares" href="https://yuvacares.com" target="_blank" data-name="Yuva Cares"></a>
 
-<div class="grid">
-
-<a class="card" href="https://ytrip.in" target="_blank">
-<h3>Ytrip</h3>
-<p>Travel Services</p>
-</a>
-
-<a class="card" href="https://b2bfare.com" target="_blank">
-<h3>B2BFare</h3>
-<p>Flight & Booking Solutions</p>
-</a>
-
-<a class="card" href="https://yuvento.com" target="_blank">
-<h3>Juvento</h3>
-<p>Brand Division</p>
-</a>
-
-<a class="card" href="https://pigeonst.com" target="_blank">
-<h3>Pigeon Street</h3>
-<p>Media & Creative</p>
-</a>
-
-<a class="card" href="https://hikeup.biz" target="_blank">
-<h3>HikeUp</h3>
-<p>Digital Growth</p>
-</a>
-
-<a class="card" href="https://yuvacares.com" target="_blank">
-<h3>Yuva Cares</h3>
-<p>Community Initiative</p>
-</a>
-
-</div>
-
-<div class="footer">
-“15 years of commitment, countless milestones”
 </div>
 
 </body>
